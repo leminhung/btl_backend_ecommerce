@@ -4,7 +4,10 @@
     "title": "Áo phông 3211",
     "price": 113956.04,
     "code": "ccee1315-57e3-4bfc-91f9-e9e555804f77",
-    "color": "green",
+    "color": [
+      "green",
+      "black"
+    ],
     "status": "hết hàng",
     "size": "M",
     "description": "In aliqua consequat amet excepteur amet reprehenderit anim anim.",
