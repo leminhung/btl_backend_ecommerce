@@ -8,10 +8,10 @@ dotenv.config({ path: "./config/.env" });
 
 // Load models
 const Product = require("./models/Product.model");
-const User = require("./models/User.model");
-const Order = require("./models/Order.model");
+// const User = require("./models/User.model");
+// const Order = require("./models/Order.model");
 const Category = require("./models/Category.model");
-const Image = require("./models/Image.model");
+// const Image = require("./models/Image.model");
 
 // Connect to DB
 mongoose.connect(process.env.MONGO_URI, {
@@ -31,9 +31,9 @@ const products = JSON.parse(
 const categories = JSON.parse(
   fs.readFileSync(`${__dirname}/_data/categories.json`, "utf8")
 );
-const images = JSON.parse(
-  fs.readFileSync(`${__dirname}/_data/images.json`, "utf8")
-);
+// const images = JSON.parse(
+//   fs.readFileSync(`${__dirname}/_data/images.json`, "utf8")
+// );
 
 // import into DB
 const importData = async () => {
@@ -42,7 +42,7 @@ const importData = async () => {
     // await User.create(users);
     // await Order.create(orders);
     await Category.create(categories);
-    await Image.create(images);
+    // await Image.create(images);
     console.log("Data Imported...".green.inverse);
     process.exit();
   } catch (err) {
@@ -54,8 +54,8 @@ const importData = async () => {
 const deleteData = async () => {
   try {
     await Product.deleteMany();
-    // await User.deleteMany();
-    // await Order.deleteMany();
+    await User.deleteMany();
+    await Order.deleteMany();
     await Category.deleteMany();
     await Image.deleteMany();
     console.log("Data Destroyed...".red.inverse);

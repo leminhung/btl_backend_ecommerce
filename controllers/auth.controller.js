@@ -44,12 +44,14 @@ exports.signIn = asyncHandler(async (req, res, next) => {
   const user = await User.findOne({ email }).select("+password");
 
   if (!user) {
-    return next(new ErrorResponse(msgEnum.UNAUTHORIZED, codeEnum.UNAUTHORIZED));
+    return next(new ErrorResponse(msgEnum.USER_NOT_FOUND, codeEnum.NOT_FOUND));
   }
 
   const checkMatch = await user.isMatchPassword(password);
   if (!checkMatch) {
-    return next(new ErrorResponse(msgEnum.UNAUTHORIZED, codeEnum.UNAUTHORIZED));
+    return next(
+      new ErrorResponse(msgEnum.WRONG_PASSWORD, codeEnum.UNAUTHORIZED)
+    );
   }
 
   const token = user.signToken();

@@ -10,10 +10,10 @@ const productSchema = new mongoose.Schema(
       min: [0, "Price must be at least 0"],
     },
     code: { type: String, required: true },
-    color: { type: String, required: true },
+    color: { type: [String], required: true },
     status: { type: String, required: true },
     size: {
-      type: String,
+      type: [String],
       enum: ["XL", "L", "M", "S", "XXL", "3XL"],
       required: true,
     },
